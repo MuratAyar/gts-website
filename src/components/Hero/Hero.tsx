@@ -117,7 +117,7 @@ export default function Hero() {
 
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 rounded bg-brand-600 px-4 py-2 font-semibold text-white hover:bg-brand-700"
+              className="flex items-center justify-center gap-2 rounded bg-brand-500 px-4 py-2 font-semibold text-white hover:bg-brand-700"
             >
               <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2"
                    viewBox="0 0 24 24">
@@ -141,7 +141,7 @@ export default function Hero() {
             <button
                 key={btn.label}
                 onClick={() => redirect(btn.link)}
-                className="w-full rounded-md bg-brand-600 px-4 py-3 text-base font-bold tracking-wide
+                className="w-full rounded-md bg-brand-500 px-4 py-3 text-base font-bold tracking-wide
                         text-white transition hover:bg-brand-800 active:scale-95"
             >
                 {btn.label}

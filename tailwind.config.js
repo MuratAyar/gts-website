@@ -16,10 +16,11 @@ export default {
       colors: {
         brand: {
           100: '#fcd8b6',
-          400: '#fb8239',
-          600: '#e75710',   // ✅ ana turuncu
-          800: '#a51200',
-          900: '#450b00',
+          400: '#1C3D52',
+          500: '#FFB343', // ✅ ana mavi
+          600: '#121827',   // ✅ ana turuncu
+          800: '#121827',
+          900: '#121827',
         },
 
         /* ÖNCEKİ primary paletiniz hâlâ lazım olabilir */

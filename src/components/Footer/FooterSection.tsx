@@ -74,6 +74,7 @@ const FooterSection = () => {
                 links: [
                   { to: "/about", label: "About us" },
                   { to: "/contact", label: "Contact" },
+                  { to: "/faq", label: "FAQ" },
                   { to: "/blog", label: "Blog" },
                 ],
               },
@@ -82,7 +83,6 @@ const FooterSection = () => {
                 links: [
                   { to: "/privacy-policy", label: "Privacy Policy" },
                   { to: "/terms-and-conditions", label: "Terms & Conditions" },
-                  { to: "/faq", label: "FAQ" },
                 ],
               },
             ].map((block) => (

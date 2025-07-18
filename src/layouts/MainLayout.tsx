@@ -6,7 +6,7 @@ import FooterSection from "../components/Footer/FooterSection";
     flex-1 sayesinde <main> kalan yüksekliği dolduruyor. */
 export default function MainLayout() {
   return (
-    <div className="flex min-h-screen flex-col bg-brand-600">
+    <div className="flex min-h-screen flex-col">
       <Header />
 
       {/* İçerik bölümü  */}

@@ -40,8 +40,8 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-40 shadow-sm backdrop-blur-sm transition-colors duration-200 bg-brand-400"
-      style={{ backgroundColor: `rgba(231, 87, 16, ${opacity})` }} /* brand-600 */
+      className="sticky top-0 z-40 shadow-sm backdrop-blur-sm transition-colors duration-200 bg-brand-500"
+      style={{ backgroundColor: `rgba(18, 24, 39, ${opacity})` }} /* brand-600 */
     >
       {/* -------- NAV -------- */}
       <nav
@@ -84,6 +84,7 @@ export default function Header() {
               <div className="absolute left-1/2 z-10 mt-3 w-40 -translate-x-1/2 rounded-lg bg-white shadow-lg ring-1 ring-gray-900/5">
                 <ul className="p-2">
                   {[
+                    { label: "About", to: "/about" },
                     { label: "Contact Us", to: "/contact" },
                     { label: "FAQ",        to: "/faq" },
                     { label: "Blog",       to: "/blog" },
