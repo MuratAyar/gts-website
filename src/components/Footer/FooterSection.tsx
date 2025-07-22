@@ -44,7 +44,7 @@ const FooterSection = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-brand-600 text-white">
+    <footer className="bg-brand-900 text-white">
       <div className="mx-auto w-full max-w-screen-xl px-4 py-8 lg:py-12">
         {/* üst satır */}
         <div className="flex flex-col gap-8 md:flex-row md:justify-between">

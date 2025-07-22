@@ -78,27 +78,33 @@ const sellerFaq = [
 const FaqPage: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [navbarH, setNavbarH] = useState(0);
+  const [footerH, setFooterH] = useState(0);
   const [role, setRole] = useState<"buyer" | "seller">("buyer");
 
-  // Navbar yüksekliğini yalnızca ilk render’da ölç
+  /* Header ve footer yüksekliğini yalnızca ilk render’da ölç */
   useEffect(() => {
-    const nav = document.querySelector("nav");
-    if (nav) setNavbarH(nav.getBoundingClientRect().height);
+    const nav    = document.querySelector("nav");
+    const footer = document.querySelector("footer");
+    if (nav)    setNavbarH(nav.getBoundingClientRect().height);
+    if (footer) setFooterH(footer.getBoundingClientRect().height);
   }, []);
 
-  // Seçilen role göre içerik
+  /* Seçilen role göre içerik */
   const faqItems = role === "buyer" ? buyerFaq : sellerFaq;
-
   const toggle = (i: number) => setOpenIndex(openIndex === i ? null : i);
 
   return (
-    <section className="bg-brand-600 text-white">
-      {/* Header ile çakışmayı önleyen spacer */}
-      {navbarH > 0 && <div style={{ height: navbarH }} />}
-
-      <div className="mx-auto max-w-4xl px-5 pb-10">
-        {/* ------- Başlık & Sekmeler ------- */}
-        <h2 className="text-center text-4xl font-extrabold mb-4">
+    /* minHeight = ekran yüksekliği – header – footer */
+    <section
+      className="bg-brand-600 text-white"
+      style={{
+        paddingTop: navbarH,
+        minHeight: `calc(100vh - ${navbarH + footerH}px)`,
+      }}
+    >
+      <div className="mx-auto max-w-4xl px-5 py-8">
+        {/* --------- Başlık & Sekmeler --------- */}
+        <h2 className="mb-4 text-center text-4xl font-extrabold">
           Sıkça Sorulan Sorular
         </h2>
 
@@ -108,17 +114,21 @@ const FaqPage: React.FC = () => {
               key={r}
               onClick={() => {
                 setRole(r);
-                setOpenIndex(null); // sekme değişince açık soruyu kapat
+                setOpenIndex(null);
               }}
               className={`rounded-md px-4 py-2 text-sm font-semibold transition
-                          ${role === r ? "bg-white/20" : "bg-white/10 hover:bg-white/20"}`}
+                          ${
+                            role === r
+                              ? "bg-white/20"
+                              : "bg-white/10 hover:bg-white/20"
+                          }`}
             >
               {r === "buyer" ? "Buyer" : "Seller"}
             </button>
           ))}
         </div>
 
-        {/* ------- SSS Kartları ------- */}
+        {/* --------- FAQ Kartları --------- */}
         <div className="space-y-3">
           {faqItems.map((item, idx) => {
             const opened = openIndex === idx;
@@ -127,11 +137,14 @@ const FaqPage: React.FC = () => {
                 key={idx}
                 className="overflow-hidden rounded-lg border border-white/60 bg-brand-500/60"
               >
-                {/* Soru */}
                 <button
                   onClick={() => toggle(idx)}
-                  className={`flex w-full items-center justify-between p-4 text-left font-medium
-                              transition ${opened ? "bg-brand-500/60" : "hover:bg-brand-500/40"}`}
+                  className={`flex w-full items-center justify-between p-4 text-left font-medium transition
+                              ${
+                                opened
+                                  ? "bg-brand-500/60"
+                                  : "hover:bg-brand-500/40"
+                              }`}
                 >
                   <span>{item.question}</span>
                   <svg

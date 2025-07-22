@@ -28,7 +28,7 @@ const StatsSection = () => {
   }, []);
 
   return (
-    <section ref={statsRef} className="bg-gray-900 text-zinc-900 py-8 sm:py-16">
+    <section ref={statsRef} className="bg-brand-900 text-zinc-900 py-8 sm:py-16">
       <div className="max-w-screen-xl mx-auto px-6 lg:px-16 overflow-x-auto">
         <div className="flex flex-nowrap md:flex-row justify-between min-w-max">
           {/* Stat 1: Happy Clients */}

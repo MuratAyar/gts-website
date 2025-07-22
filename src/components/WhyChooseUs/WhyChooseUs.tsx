@@ -36,8 +36,8 @@ export default function WhyChooseUs() {
 
           <Link
             to="/about"
-            className="inline-flex items-center rounded-lg bg-brand-600 px-6 py-3 text-sm font-medium
-                       text-white transition hover:bg-brand-700 focus:outline-none focus:ring-4 focus:ring-brand-300
+            className="inline-flex items-center rounded-lg bg-brand-500 px-6 py-3 text-sm font-medium
+                       text-white transition hover:bg-brand-600 focus:outline-none focus:ring-4 focus:ring-brand-300
                        dark:focus:ring-brand-800"
           >
             Learn more about us

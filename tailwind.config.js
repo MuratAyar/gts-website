@@ -12,15 +12,15 @@ export default {
 
   theme: {
     extend: {
-      /* TURUNCU KURUMSAL PALET  */
+      /* LACİVERT VE TURUNCU KURUMSAL PALET  EC8305 */
       colors: {
         brand: {
           100: '#fcd8b6',
-          400: '#1C3D52',
-          500: '#FFB343', // ✅ ana mavi
-          600: '#121827',   // ✅ ana turuncu
-          800: '#121827',
-          900: '#121827',
+          500: '#FFB343', 
+          600: '#D47504',
+          700: '#014499',
+          800: '#172750',
+          900: '#182136',
         },
 
         /* ÖNCEKİ primary paletiniz hâlâ lazım olabilir */
