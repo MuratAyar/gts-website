@@ -82,7 +82,7 @@ export default function Header() {
         {/* -------- DESKTOP LİNKLER (ortalanmış) -------- */}
         <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-x-12">
           {/* About dropdown */}
-          <div className="relative">
+          <div className="relative" ref={aboutRef}>
             <button
               onClick={() => setAboutOpen((p) => !p)}
               className="flex items-center gap-x-1 text-sm font-semibold text-white hover:scale-105 transition-transform"

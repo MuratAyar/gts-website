@@ -24,7 +24,7 @@ export default function WhyChooseUs() {
         {/* Metin alanı -------------------------------------------------- */}
         <div>
           <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Why choose&nbsp;<span className="text-brand-600">GTS&nbsp;Cranes</span>?
+            Why choose&nbsp;<span className="text-brand-500">GTS&nbsp;Cranes</span>?
           </h2>
 
           <p className="mb-8 max-w-prose font-light text-gray-600 dark:text-gray-400 md:text-lg">

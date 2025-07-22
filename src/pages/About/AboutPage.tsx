@@ -1,4 +1,3 @@
-
 import AboutSection from "../../components/AboutPageComponents/About/AboutSection";
 import StatsSection from "../../components/AboutPageComponents/Stats/StatsSection";
 import StepsSection from "../../components/AboutPageComponents/Steps/StepsSection";

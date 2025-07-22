@@ -11,7 +11,7 @@ const ContactPage: React.FC = () => {
 
   return (
     /* Tüm arka plan turuncu */
-    <section className="bg-brand-500 py-6">
+    <section className="bg-brand-600 py-6">
       <div className="mx-auto grid w-full max-w-screen-xl grid-cols-1 gap-10 px-4 lg:grid-cols-2">
         {/* ----------------- GOOGLE MAPS ----------------- */}
         <div className="relative h-[640px] lg:h-[680px] w-full overflow-hidden rounded-lg shadow-lg">

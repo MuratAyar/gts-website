@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import logo from "../../assets/GTS_logo.png";
-import banner from "../../assets/login_banner.jpg";
-import googleIcon from "../../assets/google-icon.png";
+import logo from "../../../assets/GTS_logo.png";
+import banner from "../../../assets/login_banner.jpg";
+import googleIcon from "../../../assets/google-icon.png";
 
 /**
  * Login page – lighter spacing: form biraz yukarı, footer sayfanın
@@ -16,12 +16,15 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const [error, setError]       = useState("");
   const [navbarH, setNavbarH]   = useState(0);
+  const [footerH, setFooterH]   = useState(0);
   const navigate = useNavigate();
 
   // measure header height (footer serbestçe aşağı kaysın)
   useEffect(() => {
     const nav = document.querySelector("nav");
+    const footer = document.querySelector("footer");
     if (nav) setNavbarH(nav.getBoundingClientRect().height);
+    if (footer) setFooterH(footer.getBoundingClientRect().height);
   }, []);
 
   const loginUser = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,19 +44,20 @@ const LoginPage: React.FC = () => {
 
   return (
     <section
-      className="relative flex flex-col items-center justify-center justify-start overflow-hidden bg-brand-900"
+      className="relative flex flex-col items-center justify-start overflow-hidden bg-brand-900"
       style={{
         backgroundImage: `url(${banner})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        paddingTop: navbarH + 16, // ~1rem ek boşluk
+        paddingTop: navbarH + 16,          // header kadar + 1 rem
+        paddingBottom: footerH + 160,      // footer + ekstra 10 rem; ilk ekranda görünmez
       }}
     >
       {/* overlay */}
       <div className="absolute inset-0 bg-brand-900/70 backdrop-blur-sm" />
 
       {/* form */}
-      <div className="relative z-10 mb-40 w-full max-w-md rounded-lg bg-brand-800/75 p-6 shadow-lg ring-1 ring-black/10">
+      <div className="relative z-10 mb-24 w-full max-w-md rounded-lg bg-brand-800/75 p-6 shadow-lg ring-1 ring-black/10">
         <div className="space-y-6">
           <a href="/" className="flex items-center text-2xl font-semibold text-white">
             <img src={logo} alt="GTS" className="mr-2 h-8 w-8" />

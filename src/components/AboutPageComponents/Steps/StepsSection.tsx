@@ -163,7 +163,9 @@ const StepsSection = () => {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          How Does CraneMarket Work?
+          <h2 className="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            How does&nbsp;<span className="text-brand-500">GTS&nbsp;Cranes</span> works?
+          </h2>
         </motion.h2>
 
         {/* Steps navigation */}
@@ -287,8 +289,7 @@ const StepsSection = () => {
                         transition={{ delay: 0.6 }}
                       >
                         <motion.button 
-                          className="text-white font-bold py-3.5 px-7 rounded-lg transition-colors flex items-center space-x-2"
-                          style={{ backgroundColor: "#101828" }}
+                          className="text-white font-bold py-3.5 px-7 rounded-lg transition-colors flex items-center space-x-2 bg-brand-500 hover:bg-brand-600"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.98 }}
                           onClick={step.buttonAction}

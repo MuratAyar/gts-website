@@ -76,18 +76,19 @@ export default function FeaturedListings() {
           Featured&nbsp;Listings
         </h2>
 
-        {/* Ok düğmeleri */}
+        {/* Sol ok */}
         <button
           onClick={prev}
-          className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-100 focus:outline-none"
+          className="absolute left-6 sm:left-10 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-100 focus:outline-none"
           aria-label="Önceki vitrin"
         >
           <ChevronLeftIcon className="h-6 w-6 text-gray-600" />
         </button>
 
+        {/* Sağ ok */}
         <button
           onClick={next}
-          className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-100 focus:outline-none"
+          className="absolute right-6 sm:right-10 top-1/2 -translate-y-1/2 rounded-full bg-white p-2 shadow hover:bg-gray-100 focus:outline-none"
           aria-label="Sonraki vitrin"
         >
           <ChevronRightIcon className="h-6 w-6 text-gray-600" />

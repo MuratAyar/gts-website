@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import logo from "../../assets/GTS_logo.png";
-import banner from "../../assets/login_banner.jpg";
-import googleIcon from "../../assets/google-icon.png";
+import logo from "../../../assets/GTS_logo.png";
+import banner from "../../../assets/login_banner.jpg";
+import googleIcon from "../../../assets/google-icon.png";
 
 /**
  * Registration page – tweaked vertical spacing so header, form and
