@@ -9,6 +9,7 @@ import PrivacyPolicyPage from "../pages/PrivacyPolicy/PrivacyPolicyPage";
 import LoginPage from "../pages/Auth/Login/LoginPage";
 import RegisterPage from "../pages/Auth/Register/RegisterPage"; // <-- EKLE
 import PricingPage from "../pages/Pricing/PricingPage";
+import ListingsPage from "../pages/Listings/ListingsPage";
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ export const router = createBrowserRouter([
         { path: "/login", element: <LoginPage /> }, // <-- EKLE
         { path: "/register", element: <RegisterPage /> }, // <-- EKLE
         { path: "/sell", element: <PricingPage /> }, // <-- EKLE
+        { path: "/search", element: <ListingsPage /> }, // <-- EKLE
     ],
   },
 ]);
