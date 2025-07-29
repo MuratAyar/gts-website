@@ -10,6 +10,8 @@ import LoginPage from "../pages/Auth/Login/LoginPage";
 import RegisterPage from "../pages/Auth/Register/RegisterPage"; // <-- EKLE
 import PricingPage from "../pages/Pricing/PricingPage";
 import ListingsPage from "../pages/Listings/ListingsPage";
+import ListingDetailPage from "../pages/Listings/ListingDetailPage";   // <-- YENİ
+
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +27,8 @@ export const router = createBrowserRouter([
         { path: "/register", element: <RegisterPage /> }, // <-- EKLE
         { path: "/sell", element: <PricingPage /> }, // <-- EKLE
         { path: "/search", element: <ListingsPage /> }, // <-- EKLE
+        { path: "/search/:brand/:listingId", element: <ListingDetailPage /> } // detay sayfası
+
     ],
   },
 ]);

@@ -23,6 +23,8 @@ import {
   XMarkIcon,
 } from '@heroicons/react/20/solid'
 
+import { Link } from 'react-router-dom'   
+
 /* ---------- CRANE-MARKETPLACE CONFIG ---------- */
 const sortOptions = [
   { name: 'Newest', current: true },
@@ -338,20 +340,24 @@ const mockListings: Listing[] = [
 ]
 
 /* ---------- CARD COMPONENT ---------- */
+const slugify = (str: string) =>
+  str.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+
 const ListingCard: React.FC<{ data: Listing; list?: boolean }> = ({
   data,
   list = false,
 }) => (
-  <div
+  <Link
+    to={`/search/${slugify(data.manufacturer)}/${data.id}`}
     className={
-      list
-        ? 'flex overflow-hidden rounded-lg border border-gray-200 shadow-sm transition hover:shadow-md'
-        : 'flex flex-col overflow-hidden rounded-lg border border-gray-200 shadow-sm transition hover:shadow-md'
-    }
-  >
-    <img
-      src={data.image}
-      alt={data.title}
+       list
+         ? 'flex overflow-hidden rounded-lg border border-gray-200 shadow-sm transition hover:shadow-md'
+         : 'flex flex-col overflow-hidden rounded-lg border border-gray-200 shadow-sm transition hover:shadow-md'
+     }
+   >
+     <img
+       src={data.image}
+       alt={data.title}
       className={
         list
           ? 'h-32 w-48 flex-shrink-0 object-cover'
@@ -366,7 +372,7 @@ const ListingCard: React.FC<{ data: Listing; list?: boolean }> = ({
       <p className="mt-auto text-base font-bold text-brand-500">{data.price}</p>
       <p className="text-xs text-gray-400">{data.location}</p>
     </div>
-  </div>
+  </Link>
 )
 
 function classNames(...classes: (string | boolean | undefined | null)[]) {

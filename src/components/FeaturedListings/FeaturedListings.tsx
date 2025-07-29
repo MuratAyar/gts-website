@@ -3,6 +3,10 @@ import { useEffect, useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 
+/* --- helper to slug-ify manufacturer --- */
+const slugify = (str: string) =>
+  str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
 /* --- Mock veriler (≥18) --- */
 const demoListings = [
   { id:"caterpillar-320", title:"Caterpillar 320D Paletli Vinç – 2019", image:"https://picsum.photos/seed/crane1/640/480", capacity:"20 ton", location:"İstanbul", price:265_000 },
@@ -105,7 +109,7 @@ export default function FeaturedListings() {
           {visibleListings.map((l) => (
             <Link
               key={l.id}
-              to={`/listings/${l.id}`}
+              to={`/search/${slugify(l.title.split(" ")[0])}/${l.id}`}
               className="group flex flex-col overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition hover:shadow-lg"
             >
               <div className="h-32 w-full overflow-hidden">
@@ -137,7 +141,7 @@ export default function FeaturedListings() {
         {/* Daha fazla göster */}
         <div className="mt-8 text-center">
           <Link
-            to="/listings?featured=true"
+            to="/search?featured=true"
             className="inline-flex items-center rounded-lg border border-gray-200 bg-white px-6 py-2.5 text-sm font-medium text-gray-900 transition hover:bg-gray-100 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200"
           >
             Show more

@@ -125,7 +125,7 @@ export default function Header() {
 
           {/* Listings */}
           <Link
-            to="/listings"
+            to="/search"
             onClick={scrollToTop}
             className="text-sm font-semibold text-white transition-transform hover:scale-105"
           >
@@ -167,7 +167,7 @@ export default function Header() {
               { label: "Contact Us", to: "/contact" },
               { label: "FAQ", to: "/faq" },
               { label: "Blog", to: "/blog" },
-              { label: "Listings", to: "/listings" },
+              { label: "Listings", to: "/search" },
             ].map((l) => (
               <li key={l.to}>
                 <Link
