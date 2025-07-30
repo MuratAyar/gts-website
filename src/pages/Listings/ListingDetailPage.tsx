@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import SellerInformationSection from "../../components/ListingDetailComponents/SellerInformationSection";
+import ShortcutsSection from "../../components/ListingDetailComponents/ShortcutsSection";
 
 /* ------------------------------------------------------------------
    TEMP-MOCK DATA – replace with real API data later
@@ -60,8 +61,36 @@ export default function ListingDetailPage() {
   /* image gallery */
   const [idx, setIdx] = useState(0);
   const imgs = mockListing.images;
-  const prev = () => setIdx((i) => (i === 0 ? imgs.length - 1 : i - 1));
-  const next = () => setIdx((i) => (i === imgs.length - 1 ? 0 : i + 1));
+
+  const thumbsRef = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // 1)  useRef ve useState zaten var ─ sadece ok (prev / next) fonksiyonlarını güncelledik
+const prev = () => {
+  setIdx(i => {
+    const next = i === 0 ? imgs.length - 1 : i - 1
+    /*  👉 block:'nearest'  eklenerek yalnızca yatay kaydırılır;
+        dikey hizalama korunur ve sayfa aşağıya hareket etmez   */
+    thumbsRef.current[next]?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'center',
+      block:  'nearest',
+    })
+    return next
+  })
+}
+
+const next = () => {
+  setIdx(i => {
+    const next = i === imgs.length - 1 ? 0 : i + 1
+    thumbsRef.current[next]?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'center',
+      block:  'nearest',
+    })
+    return next
+  })
+}
+
 
   /* contact-seller modal */
   const [open, setOpen] = useState(false);
@@ -81,32 +110,48 @@ export default function ListingDetailPage() {
                 className="h-96 w-full rounded-lg object-cover sm:h-[32rem]"
               />
               <button
+                type="button"
                 onClick={prev}
                 className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/70 p-2 text-gray-700 shadow hover:bg-white"
               >
                 ‹
               </button>
+
               <button
+                type="button"
                 onClick={next}
                 className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/70 p-2 text-gray-700 shadow hover:bg-white"
               >
                 ›
               </button>
+
             </div>
 
-            <div className="mt-4 flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300">
+            {/* thumbnail gallery */}
+            <div className="mt-4 flex gap-3 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 px-1">
               {imgs.map((src, i) => (
                 <button
                   key={src}
                   onClick={() => setIdx(i)}
-                  className={`h-20 w-28 flex-shrink-0 overflow-hidden rounded-md ring-2 ${
-                    i === idx ? "ring-brand-600" : "ring-transparent"
+                  ref={(el) => { thumbsRef.current[i] = el }}      // sadece atama
+                  /*  ▸ seçili foto: kalın (4 px) turuncu BORDER
+                      ▸ diğerleri: ince (2 px) transparan BORDER           */
+                  className={`h-24 w-36 flex-shrink-0 rounded-md ${
+                    i === idx
+                      ? "border-4 border-brand-600"
+                      : "border-2 border-transparent"
                   }`}
                 >
-                  <img src={src} alt="" className="h-full w-full object-cover" />
+                  <img
+                    src={src}
+                    alt=""
+                    className="h-full w-full  object-cover"
+                  />
                 </button>
               ))}
             </div>
+
+
           </div>
 
           {/* headline & quick facts (right of gallery) */}
@@ -120,7 +165,7 @@ export default function ListingDetailPage() {
             </p>
             <button
                 onClick={() => setOpen(true)}
-                className="w-full rounded-lg bg-brand-600 px-6 py-3 text-lg font-semibold text-white hover:bg-brand-600/90"
+                className="w-full rounded-lg bg-brand-500 px-6 py-3 text-lg font-semibold text-white hover:bg-brand-600"
             >
                 Contact seller
             </button>
@@ -139,55 +184,59 @@ export default function ListingDetailPage() {
           </div>
         </div>
 
+        <ShortcutsSection onContactSeller={() => setOpen(true)} />
+
         {/* ─────────── SECOND ROW (info panels + map) ─────────── */}
-        <div className="gap-8 lg:flex">
-        {/* SOL KOLON – paneller */}
-        <div className="flex-1 space-y-6">
-            <Panel title="Technical details">
-            {mockListing.technical.map(([k, v]) => (
-                <Detail key={k} label={k} value={v} />
-            ))}
-            </Panel>
+        <div className="mx-auto mt-12 max-w-7xl rounded-lg border border-gray-200 px-4 p-6 bg-white lg:flex lg:gap-8 lg:p-10">
+          {/* SOL KOLON – paneller */}
+          <div className="flex-1 space-y-6">
+              <Panel title="Technical details">
+              {mockListing.technical.map(([k, v]) => (
+                  <Detail key={k} label={k} value={v} />
+              ))}
+              </Panel>
 
-            <Panel title="Details about the offer">
-            <Detail label="Listing ID" value={mockListing.offer.id} />
-            <Detail label="Update"     value={mockListing.offer.update} />
-            </Panel>
+              <Panel title="Details about the offer">
+              <Detail label="Listing ID" value={mockListing.offer.id} />
+              <Detail label="Update"     value={mockListing.offer.update} />
+              </Panel>
 
-            <Panel title="Description">
-            <pre className="whitespace-pre-wrap break-words text-sm text-gray-700">
-                {mockListing.description}
-            </pre>
-            </Panel>
+              <Panel title="Description">
+              <pre className="whitespace-pre-wrap break-words text-sm text-gray-700">
+                  {mockListing.description}
+              </pre>
+              </Panel>
+          </div>
+
+          {/* SAĞ KOLON – harita + buton (tam yükseklik) */}
+          <div className="flex flex-1 flex-col space-y-6">
+              <div className="flex-1 overflow-hidden rounded-lg shadow-lg">
+              <iframe
+                  title="Listing location"
+                  className="h-full w-full"
+                  style={{ border: 0 }}
+                  loading="lazy"
+                  src={`https://maps.google.com/maps?q=${mockListing.mapQuery}&z=10&output=embed`}
+                  allowFullScreen
+              />
+              </div>
+
+              {/* buton alt kenarda kalır */}
+              <button
+              onClick={() => setOpen(true)}
+              className="w-full rounded-lg bg-brand-500 px-6 py-3 text-lg font-semibold text-white hover:bg-brand-600"
+              >
+              Contact seller
+              </button>
+          </div>
         </div>
-
-        {/* SAĞ KOLON – harita + buton (tam yükseklik) */}
-        <div className="flex flex-1 flex-col space-y-6">
-            <div className="flex-1 overflow-hidden rounded-lg shadow-lg">
-            <iframe
-                title="Listing location"
-                className="h-full w-full"
-                style={{ border: 0 }}
-                loading="lazy"
-                src={`https://maps.google.com/maps?q=${mockListing.mapQuery}&z=10&output=embed`}
-                allowFullScreen
-            />
-            </div>
-
-            {/* buton alt kenarda kalır */}
-            <button
-            onClick={() => setOpen(true)}
-            className="w-full rounded-lg bg-brand-600 px-6 py-3 text-lg font-semibold text-white hover:bg-brand-600/90"
-            >
-            Contact seller
-            </button>
-        </div>
-        </div>
+        
+        {/* seller info strip (full-width) */}
+        <SellerInformationSection />
 
       </section>
 
-      {/* seller info strip (full-width) */}
-      <SellerInformationSection />
+      
 
       {/* ─────────── Contact-seller modal ─────────── */}
       {open && (
@@ -226,7 +275,7 @@ export default function ListingDetailPage() {
               </div>
               <button
                 type="submit"
-                className="w-full rounded-lg bg-brand-600 px-4 py-3 font-semibold text-white hover:bg-brand-600/90"
+                className="w-full rounded-lg bg-brand-500 px-4 py-3 font-semibold text-white hover:bg-brand-600"
               >
                 Send
               </button>

@@ -15,7 +15,7 @@ export default function SellerInformationSection() {
   });
 
   return (
-    <section className="mx-auto mt-12 max-w-7xl rounded-lg border border-gray-200 bg-white p-6 lg:flex lg:gap-8 lg:p-10">
+    <section className="mx-auto mt-12 max-w-7xl px-4 rounded-lg border border-gray-200 bg-white p-6 lg:flex lg:gap-8 lg:p-10">
       {/* -------- LEFT : Seller info ---------------------------------- */}
       <div className="w-full max-w-md flex-shrink-0 space-y-8">
         <h3 className="text-xl font-semibold text-gray-900">
@@ -192,7 +192,7 @@ export default function SellerInformationSection() {
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-brand-600 py-3 font-semibold text-white hover:bg-brand-600/90"
+            className="w-full rounded-lg bg-brand-500 py-3 font-semibold text-white hover:bg-brand-600"
           >
             Gönder
           </button>
